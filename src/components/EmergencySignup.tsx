@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "@/firebase";
 
 const EmergencySignup = () => {
   const [formData, setFormData] = useState({
@@ -12,21 +14,40 @@ const EmergencySignup = () => {
   });
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Welcome to Qckily! 🎉",
-      description:
-        "You've secured your spot! We'll contact you within 24 hours.",
-    });
+    try {
+      const docRef = await addDoc(collection(db, "users"), {
+        name: formData.name,
+        phone: formData.phone,
+        address: formData.address,
+        timestamp: new Date(),
+      });
+      toast({
+        title: "Welcome to Qckily! 🎉",
+        description:
+          "You've secured your spot! We'll contact you within 24 hours.",
+      });
+      setFormData({ name: "", phone: "", address: "" }); // Clear form
+      console.log("Document written with ID: ", docRef.id);
+    } catch (error) {
+      console.error("Error adding document: ", error);
+      toast({
+        title: "Error",
+        description: "Error saving user",
+      });
+    }
+
     setFormData({ name: "", phone: "", address: "" });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
+
+    e.preventDefault();
   };
 
   return (
