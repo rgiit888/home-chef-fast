@@ -4,34 +4,94 @@ const ComparisonTable = () => {
   const comparisons = [
     {
       feature: "Hygiene",
-      traditional: { icon: <X className="w-5 h-5" />, text: "Unverified", color: "text-destructive" },
-      restaurants: { icon: <HelpCircle className="w-5 h-5" />, text: "Unknown", color: "text-yellow-600" },
-      qckily: { icon: <Check className="w-5 h-5" />, text: "Live Monitoring", color: "text-primary" }
+      traditional: {
+        icon: <X className="w-5 h-5" />,
+        text: "Unverified",
+        color: "text-destructive",
+      },
+      restaurants: {
+        icon: <HelpCircle className="w-5 h-5" />,
+        text: "Unknown",
+        color: "text-yellow-600",
+      },
+      qckily: {
+        icon: <Check className="w-5 h-5" />,
+        text: "Live Monitoring",
+        color: "text-primary",
+      },
     },
     {
       feature: "Cost/month",
-      traditional: { icon: <X className="w-5 h-5" />, text: "₹8k+", color: "text-destructive" },
-      restaurants: { icon: <X className="w-5 h-5" />, text: "₹15k+", color: "text-destructive" },
-      qckily: { icon: <Check className="w-5 h-5" />, text: "₹3k", color: "text-primary font-bold" }
+      traditional: {
+        icon: <X className="w-5 h-5" />,
+        text: "₹21k+",
+        color: "text-destructive",
+      },
+      restaurants: {
+        icon: <X className="w-5 h-5" />,
+        text: "₹28k+",
+        color: "text-destructive",
+      },
+      qckily: {
+        icon: <Check className="w-5 h-5" />,
+        text: "₹15k",
+        color: "text-primary font-bold",
+      },
     },
     {
       feature: "Ingredient Qty",
-      traditional: { icon: <X className="w-5 h-5" />, text: "Excess waste", color: "text-destructive" },
-      restaurants: { icon: <X className="w-5 h-5" />, text: "N/A", color: "text-muted-foreground" },
-      qckily: { icon: <Check className="w-5 h-5" />, text: "Zero waste", color: "text-primary font-bold" }
+      traditional: {
+        icon: <X className="w-5 h-5" />,
+        text: "Excess waste",
+        color: "text-destructive",
+      },
+      restaurants: {
+        icon: <X className="w-5 h-5" />,
+        text: "N/A",
+        color: "text-muted-foreground",
+      },
+      qckily: {
+        icon: <Check className="w-5 h-5" />,
+        text: "Zero waste",
+        color: "text-primary font-bold",
+      },
     },
     {
       feature: "Flexibility",
-      traditional: { icon: <X className="w-5 h-5" />, text: "Fixed schedule", color: "text-destructive" },
-      restaurants: { icon: <Check className="w-5 h-5" />, text: "24/7", color: "text-primary" },
-      qckily: { icon: <Check className="w-5 h-5" />, text: "On-demand", color: "text-primary font-bold" }
+      traditional: {
+        icon: <X className="w-5 h-5" />,
+        text: "Fixed schedule",
+        color: "text-destructive",
+      },
+      restaurants: {
+        icon: <Check className="w-5 h-5" />,
+        text: "24/7",
+        color: "text-primary",
+      },
+      qckily: {
+        icon: <Check className="w-5 h-5" />,
+        text: "On-demand",
+        color: "text-primary font-bold",
+      },
     },
     {
       feature: "Food Quality",
-      traditional: { icon: <HelpCircle className="w-5 h-5" />, text: "Inconsistent", color: "text-yellow-600" },
-      restaurants: { icon: <Check className="w-5 h-5" />, text: "Good", color: "text-primary" },
-      qckily: { icon: <Check className="w-5 h-5" />, text: "Restaurant-level", color: "text-primary font-bold" }
-    }
+      traditional: {
+        icon: <HelpCircle className="w-5 h-5" />,
+        text: "Inconsistent",
+        color: "text-yellow-600",
+      },
+      restaurants: {
+        icon: <Check className="w-5 h-5" />,
+        text: "Good",
+        color: "text-primary",
+      },
+      qckily: {
+        icon: <Check className="w-5 h-5" />,
+        text: "Restaurant-level",
+        color: "text-primary font-bold",
+      },
+    },
   ];
 
   return (
@@ -54,8 +114,12 @@ const ComparisonTable = () => {
                 <thead className="bg-muted/50">
                   <tr>
                     <th className="p-6 text-left font-bold text-lg">Feature</th>
-                    <th className="p-6 text-center font-bold text-lg">Traditional Cook</th>
-                    <th className="p-6 text-center font-bold text-lg">Restaurants</th>
+                    <th className="p-6 text-center font-bold text-lg">
+                      Traditional Cook + Grocery
+                    </th>
+                    <th className="p-6 text-center font-bold text-lg">
+                      Restaurants
+                    </th>
                     <th className="p-6 text-center font-bold text-lg bg-primary/10 text-primary">
                       Qckily ⭐
                     </th>
@@ -63,9 +127,14 @@ const ComparisonTable = () => {
                 </thead>
                 <tbody>
                   {comparisons.map((item, index) => (
-                    <tr key={index} className="border-t border-border hover:bg-muted/30 transition-colors">
-                      <td className="p-6 font-semibold text-lg">{item.feature}</td>
-                      
+                    <tr
+                      key={index}
+                      className="border-t border-border hover:bg-muted/30 transition-colors"
+                    >
+                      <td className="p-6 font-semibold text-lg">
+                        {item.feature}
+                      </td>
+
                       <td className="p-6 text-center">
                         <div className="flex items-center justify-center gap-2">
                           <span className={item.traditional.color}>
@@ -76,7 +145,7 @@ const ComparisonTable = () => {
                           </span>
                         </div>
                       </td>
-                      
+
                       <td className="p-6 text-center">
                         <div className="flex items-center justify-center gap-2">
                           <span className={item.restaurants.color}>
@@ -87,7 +156,7 @@ const ComparisonTable = () => {
                           </span>
                         </div>
                       </td>
-                      
+
                       <td className="p-6 text-center bg-primary/5">
                         <div className="flex items-center justify-center gap-2">
                           <span className={item.qckily.color}>
@@ -108,8 +177,10 @@ const ComparisonTable = () => {
           {/* Key Highlights */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
             <div className="card-feature text-center">
-              <div className="text-4xl font-bold text-primary mb-2">60%</div>
-              <div className="text-muted-foreground">Cost Savings vs Traditional</div>
+              <div className="text-4xl font-bold text-primary mb-2">30%</div>
+              <div className="text-muted-foreground">
+                Cost Savings vs Traditional
+              </div>
             </div>
             <div className="card-feature text-center">
               <div className="text-4xl font-bold text-primary mb-2">100%</div>
@@ -117,7 +188,7 @@ const ComparisonTable = () => {
             </div>
             <div className="card-feature text-center">
               <div className="text-4xl font-bold text-primary mb-2">0%</div>
-              <div className="text-muted-foreground">Food Waste</div>
+              <div className="text-muted-foreground">Grocery Waste</div>
             </div>
           </div>
         </div>
