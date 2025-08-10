@@ -9,32 +9,55 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 0 0% 3.9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 3.9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 0 0% 3.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Qckily Brand Colors */
+    --primary: 134 52% 33%; /* Fresh Green #3BB143 */
+    --primary-foreground: 0 0% 98%;
+    --primary-light: 134 52% 45%;
+    --primary-dark: 134 52% 25%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 44 95% 60%; /* Turmeric Gold */
+    --secondary-foreground: 0 0% 3.9%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 134 30% 95%; /* Light green accent */
+    --accent-foreground: 134 52% 15%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 134 52% 33%;
+
+    /* Custom Qckily Variables */
+    --chef-white: 0 0% 98%;
+    --success: 134 52% 33%;
+    --warning: 44 95% 60%;
+    --urgent: 0 84% 60%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-light)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    --gradient-warm: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--warning)));
+    
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -2px hsl(var(--primary) / 0.1);
+    --shadow-primary: 0 8px 30px -4px hsl(var(--primary) / 0.3);
+    --shadow-urgent: 0 0 20px hsl(var(--urgent) / 0.4);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --radius: 0.5rem;
 
@@ -100,6 +123,62 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer components {
+  /* Hero Button Variants */
+  .btn-hero {
+    @apply bg-[var(--gradient-primary)] text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg shadow-[var(--shadow-primary)] transition-[var(--transition-smooth)] hover:scale-105;
+  }
+  
+  .btn-urgent {
+    @apply bg-destructive text-destructive-foreground px-6 py-3 rounded-lg font-semibold shadow-[var(--shadow-urgent)] animate-pulse hover:animate-none transition-[var(--transition-bounce)];
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-secondary/90 transition-[var(--transition-smooth)];
+  }
+
+  /* Card Variants */
+  .card-feature {
+    @apply bg-card border border-border rounded-xl p-6 shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-primary)] transition-[var(--transition-smooth)] hover:scale-[1.02];
+  }
+  
+  .card-testimonial {
+    @apply bg-accent/50 border border-accent-foreground/20 rounded-xl p-6 relative overflow-hidden;
+  }
+
+  /* Gradient Backgrounds */
+  .bg-gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .bg-gradient-warm {
+    background: var(--gradient-warm);
+  }
+
+  /* Animations */
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .pulse-urgent {
+    animation: pulse-urgent 2s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-urgent {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 hsl(var(--urgent) / 0.7);
+  }
+  50% { 
+    box-shadow: 0 0 0 10px hsl(var(--urgent) / 0);
   }
 }
